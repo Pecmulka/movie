@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>КиноРецензии</title>
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.16.0/dist/css/uikit.min.css">
+    <style>
+
+    </style>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="uk-header, uk-background-secondary">
+        <div class="uk-container">
+            <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
+                <div class="uk-navbar-left">
+                    <!-- Логотип -->
+                    <a class="uk-navbar-item logo" href="/">
+                        <span>КиноРецензии</span>
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Основное содержимое -->
+    <main class="uk-container uk-margin-top">
+
+        <h1 class="uk-heading-line uk-text-center"><span>Все фильмы</span></h1>
+
+        <div class="uk-grid-match uk-child-width-1-2@m" uk-grid>
+        {% for movie in movies %}
+            <div>
+                <div class="uk-card uk-card-default uk-card-body uk-margin-bottom">
+                    <h3 class="uk-card-title">
+                        <a href="{% url 'movie_detail' movie.id %}" class="uk-link-heading">
+                            {{ movie.name }} ({{ movie.year }})
+                        </a>
+                    </h3>
+
+                    <div class="uk-text-meta">
+                        Жанры:
+                        {% for genre in movie.genres.all %}
+                            {{ genre.name }}{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </div>
+
+                    <div class="uk-margin-small-top">
+                        <span class="uk-label uk-label-success">
+                            ★ {{ movie.average_rating }}/10
+                        </span>
+                        <span class="uk-label uk-label-primary uk-margin-small-left">
+                            {{ movie.review_count }} отзывов
+                        </span>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </main>
+
+    <!-- Подвал -->
+    <footer class="uk-margin-large-top uk-padding uk-background-secondary uk-light">
+        <div class="uk-container">
+            <div class="uk-grid-match uk-child-width-1-2@s" uk-grid>
+                <div>
+                    <h3>КиноРецензии</h3>
+                    <p>Обзоры и рецензии на фильмы</p>
+                </div>
+                <div>
+                    <h3>Контакты</h3>
+                    <p>support@cinemaReview.com<br>+7 (800) 123-45-67</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.16.0/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.16.0/dist/js/uikit-icons.min.js"></script>
+</body>
+</html>
