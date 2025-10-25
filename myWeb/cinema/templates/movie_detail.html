@@ -4,19 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>КиноРецензии</title>
-    <!-- UIkit CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.16.0/dist/css/uikit.min.css">
     <style>
 
     </style>
 </head>
 <body>
-    <!-- Шапка сайта -->
     <header class="uk-header, uk-background-secondary">
         <div class="uk-container">
             <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
                 <div class="uk-navbar-left">
-                    <!-- Логотип -->
                     <a class="uk-navbar-item logo" href="/">
                         <span>КиноРецензии</span>
                     </a>
@@ -25,7 +22,6 @@
         </div>
     </header>
 
-    {% block content %}
     <div class="uk-card uk-card-default">
         <div class="uk-card-header">
             <h1 class="uk-card-title uk-margin-remove-bottom">{{ movie.name }} ({{ movie.year }})</h1>
@@ -58,11 +54,6 @@
             <div class="uk-comment uk-comment-primary uk-margin-bottom">
                 <header class="uk-comment-header">
                     <div class="uk-grid-medium uk-flex-middle" uk-grid>
-                        <div class="uk-width-auto">
-                            <a href="{% url 'reviewer_detail' review.reviewer.id %}">
-                                <span class="uk-comment-avatar" uk-icon="icon: user; ratio: 2"></span>
-                            </a>
-                        </div>
                         <div class="uk-width-expand">
                             <h4 class="uk-comment-title uk-margin-remove">
                                 <a href="{% url 'reviewer_detail' review.reviewer.id %}" class="uk-link-heading">
@@ -80,10 +71,10 @@
                     <p>{{ review.text }}</p>
                 </div>
             </div>
-            {% empty %}
-            <p class="uk-text-muted">Пока нет отзывов для этого фильма.</p>
             {% endfor %}
         </div>
     </div>
-    {% endblock %}
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.16.0/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.16.0/dist/js/uikit-icons.min.js"></script>
 </body>
+</html>
